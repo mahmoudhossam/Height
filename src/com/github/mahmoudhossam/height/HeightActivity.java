@@ -1,4 +1,4 @@
-package info.mahmoudhossam.height;
+package com.github.mahmoudhossam.height;
 
 import java.text.NumberFormat;
 
@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import com.github.mahmoudhossam.height.R;
 
 public class HeightActivity extends Activity {
 
