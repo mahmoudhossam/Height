@@ -145,8 +145,8 @@ public class HeightActivity extends Activity {
 		feet.setFocusable(on);
 		inches.setFocusable(on);
 	}
-	
-	private void emptyBoxes(){
+
+	private void emptyBoxes() {
 		cm.setText("");
 		feet.setText("");
 		inches.setText("");
