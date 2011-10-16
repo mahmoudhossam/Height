@@ -117,7 +117,7 @@ public class HeightActivity extends Activity {
 		} else {
 			toMetric();
 		}
-
+		emptyBoxes();
 	}
 
 	private void toImperial() {
@@ -144,6 +144,12 @@ public class HeightActivity extends Activity {
 		inches.setEnabled(on);
 		feet.setFocusable(on);
 		inches.setFocusable(on);
+	}
+	
+	private void emptyBoxes(){
+		cm.setText("");
+		feet.setText("");
+		inches.setText("");
 	}
 
 }
