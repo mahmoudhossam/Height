@@ -137,14 +137,12 @@ public class HeightActivity extends Activity {
 
 	private void toggleCentimeters(boolean on) {
 		cm.setEnabled(on);
-		cm.setFocusable(on);
+		
 	}
 
 	private void toggleFeetAndInches(boolean on) {
 		feet.setEnabled(on);
 		inches.setEnabled(on);
-		feet.setFocusable(on);
-		inches.setFocusable(on);
 	}
 
 	private void emptyBoxes() {
