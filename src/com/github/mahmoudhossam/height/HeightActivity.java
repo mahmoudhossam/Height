@@ -8,9 +8,11 @@ import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnKeyListener;
 import android.widget.EditText;
 import com.github.mahmoudhossam.height.R;
 
@@ -33,56 +35,66 @@ public class HeightActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		initializeVariables();
+		init();
 	}
 
-	@Override
-	protected void onRestoreInstanceState(Bundle savedInstanceState) {
-		cm.setText(savedInstanceState.getString("cm"));
-		feet.setText(savedInstanceState.getString("feet"));
-		inches.setText(savedInstanceState.getString("inches"));
-		super.onRestoreInstanceState(savedInstanceState);
-	}
-
-	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		outState.putString("cm", cm.getText().toString());
-		outState.putString("inches", inches.getText().toString());
-		outState.putString("feet", feet.getText().toString());
-		super.onSaveInstanceState(outState);
-	}
-
-	public void initializeVariables() {
+	public void init() {
+		current = Mode.METRIC;
 		cm = (EditText) findViewById(R.id.editText1);
 		feet = (EditText) findViewById(R.id.editText2);
 		inches = (EditText) findViewById(R.id.editText3);
-		current = Mode.METRIC;
+		setListeners(cm);
+		setListeners(feet);
+		setListeners(inches);
+	}
+
+	public void setListeners(View v) {
+		v.setOnKeyListener(new OnKeyListener() {
+
+			@Override
+			public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+				if ((v == cm || v == feet || v == inches)
+						&& keyCode == KeyEvent.KEYCODE_ENTER
+						&& event.getAction() == KeyEvent.ACTION_DOWN) {
+					onConvertClick(null);
+				}
+				return false;
+			}
+		});
 	}
 
 	public void onConvertClick(View view) {
+		createResultDialog(getResult()).show();
+	}
+
+	public String getResult() {
 		if (current == Mode.IMPERIAL) {
 			NumberFormat nf = NumberFormat.getInstance();
 			nf.setMaximumFractionDigits(1);
 			double output = Backend.getCentimeters(parseInput(feet),
 					parseInput(inches));
-			String result = nf.format(output);
-			createResultDialog(result + " centimeters").show();
+			return nf.format(output) + " centimeters";
 		} else {
 			int[] result = Backend.getFeetAndInches(parseInput(cm));
-			createResultDialog(
-					"" + result[0] + " feet, " + result[1] + " inches.").show();
+			return "" + result[0] + " feet, " + result[1] + " inches.";
 		}
-
 	}
 
 	private AlertDialog createResultDialog(String result) {
 		Builder builder = new AlertDialog.Builder(this);
-		builder.setCancelable(false).setTitle("Result").setMessage(result)
-				.setNegativeButton("OK", new OnClickListener() {
+		builder.setCancelable(false)
+				.setTitle(getResources().getString(R.string.result))
+				.setMessage(result)
+				.setPositiveButton("OK", new OnClickListener() {
 
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();
+						dialog.cancel();
+						if (current == Mode.IMPERIAL)
+							feet.requestFocus();
+						else
+							cm.requestFocus();
 					}
 				});
 		return builder.create();
@@ -137,7 +149,7 @@ public class HeightActivity extends Activity {
 
 	private void toggleCentimeters(boolean on) {
 		cm.setEnabled(on);
-		
+
 	}
 
 	private void toggleFeetAndInches(boolean on) {
@@ -151,4 +163,19 @@ public class HeightActivity extends Activity {
 		inches.setText("");
 	}
 
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		cm.setText(savedInstanceState.getString("cm"));
+		feet.setText(savedInstanceState.getString("feet"));
+		inches.setText(savedInstanceState.getString("inches"));
+		super.onRestoreInstanceState(savedInstanceState);
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		outState.putString("cm", cm.getText().toString());
+		outState.putString("inches", inches.getText().toString());
+		outState.putString("feet", feet.getText().toString());
+		super.onSaveInstanceState(outState);
+	}
 }
