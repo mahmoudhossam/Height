@@ -53,11 +53,13 @@ public class HeightActivity extends Activity {
 
 			@Override
 			public boolean onKey(View v, int keyCode, KeyEvent event) {
-
-				if ((v == cm || v == feet || v == inches)
-						&& keyCode == KeyEvent.KEYCODE_ENTER
+				if (keyCode == KeyEvent.KEYCODE_ENTER
 						&& event.getAction() == KeyEvent.ACTION_DOWN) {
-					onConvertClick(null);
+					if ((v == cm || v == inches)) {
+						onConvertClick(null);
+					} else if (v == feet) {
+						inches.requestFocus();
+					}
 				}
 				return false;
 			}
