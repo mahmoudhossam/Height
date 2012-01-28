@@ -38,7 +38,7 @@ public class HeightActivity extends Activity {
 	}
 
 	public void setListeners(View v) {
-		
+
 		v.setOnKeyListener(new OnKeyListener() {
 
 			@Override
@@ -47,35 +47,33 @@ public class HeightActivity extends Activity {
 						&& event.getAction() == KeyEvent.ACTION_DOWN) {
 					if ((v == cm)) {
 						onToImperial(null);
-					} else if (v == inches){
+					} else if (v == inches) {
 						onToMetric(null);
 					}
-					} else  {
-						inches.requestFocus();
-					}
+				}
 				return false;
 			}
 		});
 	}
 
 	public void onToImperial(View view) {
-		
-		createResultDialog(getImperialResult(), getCurrentFocus()).show();
-	}
 
-	public void onToMetric(View view) {
-		
 		createResultDialog(getMetricResult(), getCurrentFocus()).show();
 	}
 
+	public void onToMetric(View view) {
+
+		createResultDialog(getImperialResult(), getCurrentFocus()).show();
+	}
+
 	private String getMetricResult() {
-		
+
 		int[] result = Backend.getFeetAndInches(parseInput(cm));
 		return result[0] + " feet, " + result[1] + " inches.";
 	}
 
 	private String getImperialResult() {
-		
+
 		NumberFormat nf = NumberFormat.getInstance();
 		nf.setMaximumFractionDigits(1);
 		double output = Backend.getCentimeters(parseInput(feet),
@@ -84,7 +82,7 @@ public class HeightActivity extends Activity {
 	}
 
 	private AlertDialog createResultDialog(String result, final View caller) {
-		
+
 		Builder builder = new AlertDialog.Builder(this);
 		builder.setCancelable(false)
 				.setTitle(getResources().getString(R.string.result))
@@ -101,7 +99,7 @@ public class HeightActivity extends Activity {
 	}
 
 	private double parseInput(EditText input) {
-		
+
 		if (input.getText().length() > 0) {
 			String text = input.getText().toString();
 			double content = Double.parseDouble(text);
@@ -113,7 +111,7 @@ public class HeightActivity extends Activity {
 
 	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
-		
+
 		cm.setText(savedInstanceState.getString("cm"));
 		feet.setText(savedInstanceState.getString("feet"));
 		inches.setText(savedInstanceState.getString("inches"));
@@ -122,7 +120,7 @@ public class HeightActivity extends Activity {
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
-		
+
 		outState.putString("cm", cm.getText().toString());
 		outState.putString("inches", inches.getText().toString());
 		outState.putString("feet", feet.getText().toString());
