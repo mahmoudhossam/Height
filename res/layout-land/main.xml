@@ -1,73 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
-	xmlns:app="http://schemas.android.com/apk/res/com.github.mahmoudhossam.height"
-	android:orientation="horizontal" android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    xmlns:app="http://schemas.android.com/apk/res/com.github.mahmoudhossam.height"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal" >
 
-	<TextView android:id="@+id/textView1" android:layout_width="wrap_content"
-		android:text="@string/centimeters" android:layout_height="wrap_content"
-		android:layout_alignParentTop="true" android:layout_alignParentLeft="true" />
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/centimeters" />
 
-	<EditText android:layout_width="fill_parent" android:id="@+id/editText1"
-		android:inputType="numberDecimal" android:layout_height="wrap_content"
-		android:layout_below="@+id/textView1" android:layout_alignParentLeft="true" />
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView1"
+        android:inputType="numberDecimal" />
 
-	<TextView android:id="@+id/textView2" android:layout_width="wrap_content"
-		android:layout_height="wrap_content" android:layout_below="@+id/editText1"
-		android:layout_alignParentLeft="true" android:text="@string/feet_inches" />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/editText1"
+        android:text="@string/feet_inches" />
 
-	<EditText
-	    android:id="@+id/editText2"
-	    android:layout_width="50dp"
-	    android:layout_height="wrap_content"
-	    android:layout_alignParentLeft="true"
-	    android:layout_below="@+id/textView2"
-	    android:enabled="true"
-	    android:inputType="number" />
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView2"
+        android:enabled="true"
+        android:inputType="number" />
 
-	<TextView android:id="@+id/textView3" android:layout_width="wrap_content"
-		android:layout_height="wrap_content" android:layout_alignBottom="@+id/editText2"
-		android:layout_toRightOf="@+id/editText2" android:text="@string/feet" />
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/editText2"
+        android:layout_toRightOf="@+id/editText2"
+        android:text="@string/feet" />
 
-	<EditText
-	    android:id="@+id/editText3"
-	    android:layout_width="50dp"
-	    android:layout_height="wrap_content"
-	    android:layout_alignBaseline="@+id/editText2"
-	    android:layout_alignBottom="@+id/editText2"
-	    android:layout_alignRight="@+id/textView2"
-	    android:enabled="true"
-	    android:inputType="number" />
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/editText2"
+        android:layout_alignBottom="@+id/editText2"
+        android:layout_alignRight="@+id/textView2"
+        android:enabled="true"
+        android:inputType="number" />
 
-	<TextView android:id="@+id/textView4" android:layout_width="wrap_content"
-		android:layout_height="wrap_content" android:layout_alignBottom="@+id/editText3"
-		android:layout_toRightOf="@+id/editText3" android:text="@string/inches" />
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/editText3"
+        android:layout_toRightOf="@+id/editText3"
+        android:text="@string/inches" />
 
-	<com.google.ads.AdView android:id="@+id/adView"
-		android:layout_width="wrap_content" android:layout_height="wrap_content"
-		android:layout_alignParentBottom="true" ads:adUnitId="a14e7f2096688e2"
-		ads:adSize="BANNER" android:layout_centerHorizontal="true"
-		ads:loadAdOnCreate="true" />
+    <com.google.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="a14e7f2096688e2"
+        ads:loadAdOnCreate="true" />
 
-	<Button
-	    android:id="@+id/button1"
-	    android:layout_width="100dp"
-	    android:layout_height="wrap_content"
-	    android:layout_alignRight="@+id/textView1"
-	    android:layout_below="@+id/textView3"
-	    android:layout_marginTop="20dp"
-	    android:onClick="onConvertClick"
-	    android:text="@string/toImperial" />
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText2"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/editText2"
+        android:onClick="onToImperial"
+        android:text="@string/toImperial" />
 
-	<Button
-	    android:id="@+id/button2"
-	    android:layout_width="100dp"
-	    android:layout_height="wrap_content"
-	    android:layout_alignBaseline="@+id/button1"
-	    android:layout_alignBottom="@+id/button1"
-	    android:layout_alignRight="@+id/adView"
-	    android:layout_marginRight="18dp"
-	    android:text="@string/toMetric" />
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button1"
+        android:layout_alignBottom="@+id/button1"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="90dp"
+        android:onClick="onToMetric"
+        android:text="@string/toMetric" />
 
 </RelativeLayout>

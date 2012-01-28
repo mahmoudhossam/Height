@@ -7,6 +7,5 @@
 	<string name="inches">inch(es)</string>
 	<string name="toImperial">to imperial</string>
 	<string name="toMetric">to metric</string>
-	<string name="change">Switch</string>
 	<string name="result">Result</string>
 </resources>
